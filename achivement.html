@@ -95,6 +95,13 @@
       gap: 2px;
       background: rgba(201,168,76,0.12);
     }
+    /* カード数が奇数のとき、最後の空きマスを背景色で埋める（2カラム時のみ） */
+    @media (min-width: 901px) {
+      .projects-grid:has(> .project-card:last-child:nth-child(odd))::after {
+        content: '';
+        background: var(--navy);
+      }
+    }
 
     /* ─── PROJECT CARD ─── */
     .project-card {
