@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マーベリックプロパティー | ニューヨーク不動産投資アドバイザー</title>
+  <meta name="description" content="ローリスク＆リアルリターンを実現するニューヨーク発の不動産共同投資ビジネス。東京12年・NY22年の実績。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0a1628;
+      --navy2:  #0f2040;
+      --gold:   #c9a84c;
+      --gold2:  #e8c96e;
+      --white:  #f5f0e8;
+      --gray:   #8a9bb0;
+      --light:  #d4cfc4;
+      --section-pad: 100px 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 70px;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-logo span { display: block; font-size: 0.65rem; color: var(--gray); letter-spacing: 0.2em; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      padding: 8px 22px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--gold); transition: 0.3s; }
+
+    /* mobile nav open state */
+    @media (max-width: 900px) {
+      .nav-links.is-open {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(10,22,40,0.98);
+        padding: 24px 48px 32px;
+        border-bottom: 1px solid rgba(201,168,76,0.2);
+        gap: 20px;
+        z-index: 99;
+      }
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.6) 60%, rgba(15,32,64,0.8) 100%),
+        url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=80') center/cover no-repeat;
+    }
+
+    /* NYC skyline SVG overlay */
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--navy) 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      padding-top: 70px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--light);
+      max-width: 560px;
+      margin-bottom: 48px;
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .hero-stat { border-left: 1px solid rgba(201,168,76,0.4); padding-left: 20px; }
+    .hero-stat .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--gold2);
+      line-height: 1;
+    }
+    .hero-stat .label { font-size: 0.7rem; color: var(--gray); letter-spacing: 0.1em; margin-top: 4px; }
+
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 1px solid rgba(245,240,232,0.4);
+      color: var(--white);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gray), transparent);
+    }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* ─── SECTIONS ─── */
+    section { padding: var(--section-pad); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 0 40px 0;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--navy2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      right: 20px; bottom: 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+      pointer-events: none;
+    }
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 40px; right: -30px;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 20px 28px;
+      text-align: center;
+    }
+    .about-badge .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .about-badge small { font-size: 0.65rem; letter-spacing: 0.1em; display: block; margin-top: 4px; }
+
+    .about-text p { color: var(--light); margin-bottom: 20px; font-size: 0.95rem; }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(201,168,76,0.2);
+      margin-top: 40px;
+    }
+    .pillar {
+      background: var(--navy2);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .pillar-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .pillar h4 { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 6px; }
+    .pillar p { font-size: 0.72rem; color: var(--gray); line-height: 1.6; }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--navy); }
+
+    .services-intro {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+    .services-intro p { color: var(--light); font-size: 0.95rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(201,168,76,0.15);
+    }
+
+    .service-card {
+      background: var(--navy);
+      padding: 48px 36px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s;
+    }
+    .service-card:hover { background: var(--navy2); }
+    .service-card:hover::before { height: 100%; }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.2);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--gold2);
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+    .service-card p { font-size: 0.85rem; color: var(--light); line-height: 1.9; }
+
+    /* ─── INVESTMENT APPROACH ─── */
+    #approach {
+      background: var(--navy2);
+    }
+
+    .approach-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .approach-steps { margin-top: 48px; }
+    .step {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .step:last-child { border-bottom: none; margin-bottom: 0; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      font-weight: 300;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 40px;
+    }
+    .step-body h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 8px; color: var(--white); }
+    .step-body p { font-size: 0.83rem; color: var(--gray); line-height: 1.8; }
+
+    .approach-right {
+      position: sticky;
+      top: 100px;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 32px 36px;
+      background: rgba(201,168,76,0.06);
+      margin-bottom: 40px;
+    }
+    .quote-block blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .quote-cite { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.1em; }
+    .quote-cite strong { color: var(--gold); display: block; margin-bottom: 4px; }
+
+    .approach-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: grayscale(30%);
+    }
+
+    /* ─── PROPERTY ─── */
+    #property { background: var(--navy); }
+
+    .property-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(201,168,76,0.25);
+      overflow: hidden;
+    }
+
+    .property-img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      filter: grayscale(20%);
+      display: block;
+    }
+
+    .property-info {
+      padding: 56px 48px;
+      background: var(--navy2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .property-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .property-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .property-addr {
+      font-size: 0.8rem;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      margin-bottom: 32px;
+    }
+
+    .property-desc { font-size: 0.87rem; color: var(--light); line-height: 1.9; margin-bottom: 36px; }
+
+    .property-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 4px;
+      transition: gap 0.2s;
+    }
+    .property-cta:hover { gap: 20px; }
+    .property-cta::after { content: '→'; }
+
+    /* ─── TESTIMONIAL ─── */
+    #testimonial {
+      background: var(--navy2);
+      text-align: center;
+    }
+
+    .testimonial-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--white);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 6rem;
+      color: rgba(201,168,76,0.2);
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      line-height: 1;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .testimonial-author { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .testimonial-author .name { font-size: 0.85rem; font-weight: 500; color: var(--gold); letter-spacing: 0.1em; }
+    .testimonial-author .title { font-size: 0.75rem; color: var(--gray); }
+
+    /* ─── TEAM ─── */
+    #team { background: var(--navy); }
+
+    .team-desc { max-width: 640px; margin-bottom: 64px; }
+    .team-desc p { color: var(--light); font-size: 0.95rem; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(201,168,76,0.15);
+    }
+
+    .team-item {
+      background: var(--navy);
+      padding: 32px 28px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .team-item:hover { background: var(--navy2); }
+
+    .team-icon {
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 16px;
+    }
+
+    .team-item h4 { font-size: 0.8rem; color: var(--gold2); letter-spacing: 0.08em; margin-bottom: 8px; }
+    .team-item p { font-size: 0.75rem; color: var(--gray); line-height: 1.7; }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--navy2);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info { }
+    .contact-info p { color: var(--light); font-size: 0.9rem; margin-bottom: 40px; line-height: 2; }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-row {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-label { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); min-width: 60px; padding-top: 2px; }
+    .contact-val { font-size: 0.85rem; color: var(--light); }
+    .contact-val a { color: var(--light); text-decoration: none; }
+    .contact-val a:hover { color: var(--gold); }
+
+    .contact-form { }
+    .form-row { margin-bottom: 20px; }
+    .form-row label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 8px; }
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: var(--white);
+      padding: 14px 18px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus { border-color: var(--gold); }
+    .form-row textarea { height: 140px; resize: vertical; }
+    .form-row select option { background: var(--navy2); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--gold2); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #060e1a;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand { }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+    .footer-tagline { font-size: 0.75rem; color: var(--gray); line-height: 1.9; max-width: 260px; }
+
+    .footer-col h5 {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      font-size: 0.78rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy { font-size: 0.72rem; color: var(--gray); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-content { padding: 0 24px; padding-top: 100px; }
+      .hero-stats { gap: 24px; }
+      .container { padding: 0 24px; }
+
+      .about-grid,
+      .approach-layout,
+      .property-card,
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .about-img-wrap::before { display: none; }
+      .about-badge { right: 0; bottom: 0; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+
+      .approach-right { position: static; }
+      .property-img { min-height: 260px; }
+      .form-grid { grid-template-columns: 1fr; }
+
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      :root { --section-pad: 64px 0; }
+      .hero-stats { flex-wrap: wrap; }
+      .team-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .about-pillars { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    MAVERICK PROPERTIES
+    <span>NEW YORK REAL ESTATE ADVISOR</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">会社案内</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#approach">投資戦略</a></li>
+    <li><a href="#property">投資案件</a></li>
+    <li><a href="#team">体制</a></li>
+    <li><a href="#contact">連絡先</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">お問い合わせ</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">New York Real Estate</p>
+    <h1 class="hero-title">
+      ローリスク＆<em>リアルリターン</em>を<br>
+      実現する<br>
+      ニューヨーク不動産投資
+    </h1>
+    <p class="hero-sub">
+      東京12年・ニューヨーク22年の実績。<br>
+      本質的な価値に投資し、長期安定収益を実現する<br>
+      マーベリックプロパティーの共同投資ビジネス。
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">22<small style="font-size:1rem">年</small></div>
+        <div class="label">ニューヨーク実績</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">12<small style="font-size:1rem">年</small></div>
+        <div class="label">東京実績</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">5<small style="font-size:1rem">年+</small></div>
+        <div class="label">長期投資スパン</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#property" class="btn-primary">最新投資案件を見る</a>
+      <a href="#about" class="btn-outline">会社案内</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img
+          src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80"
+          alt="マーベリックプロパティー オフィス"
+          class="about-img"
+        >
+        <div class="about-badge">
+          <div class="big">34</div>
+          <small>YEARS COMBINED<br>EXPERIENCE</small>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow reveal">About Us</p>
+        <h2 class="section-title reveal">マーベリック<br>プロパティーとは</h2>
+        <div class="section-divider reveal"></div>
+        <p class="reveal">
+          マーベリックプロパティーは、ニューヨーク不動産への共同投資を専門とするアドバイザリー企業です。東京での12年間、そしてニューヨークでの22年にわたる現地実績を基盤に、日本の投資家の皆様へ真に価値ある投資機会をご提供してきました。
+        </p>
+        <p class="reveal">
+          「ローリスク＆リアルリターン」を経営理念に掲げ、単なる仲介ではなく、自らも投資に参加するパートナーとして案件に関わることで、利害の一致した誠実なアドバイスを実現しています。
+        </p>
+        <div class="about-pillars reveal">
+          <div class="pillar">
+            <div class="pillar-icon">🏛</div>
+            <h4>不動産投資顧問</h4>
+            <p>投資戦略の立案からデューデリジェンスまで一貫サポート</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤝</div>
+            <h4>アセット・パートナー</h4>
+            <p>自己資金を投じることで投資家と同じ目線を共有</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📊</div>
+            <h4>スウェット・パートナー</h4>
+            <p>物件運用を受託し、稼働率・収益率を最大化</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="container">
+    <div class="services-intro">
+      <p class="section-eyebrow reveal">Services</p>
+      <h2 class="section-title reveal">提供サービス</h2>
+      <div class="section-divider reveal"></div>
+      <p class="reveal">
+        ニューヨーク不動産への投資を検討されている方から、すでに物件をお持ちで運用改善を求めている方まで、フェーズに応じた専門サービスをご提供しています。
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3>投資案件の発掘・組成</h3>
+        <p>ニューヨーク現地での豊富なネットワークを活用し、市場に出る前の優良物件情報をいち早く入手。弁護士・エンジニア・会計士による専門チームが案件を精査・組成します。</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <h3>デューデリジェンス支援</h3>
+        <p>物件の法的・物理的・財務的リスクを多角的に検証。過去の収支実績から将来の収益予測まで、投資判断に必要な情報を日本語でご提供します。</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <h3>共同投資の組成</h3>
+        <p>複数の投資家と共同出資による案件参加スキームを構築。少額からNY不動産市場へのアクセスを可能にし、リスクを分散しながら実質的なリターンを追求します。</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <h3>物件管理・運用受託</h3>
+        <p>取得後の賃貸管理・テナント対応・修繕手配までを一括受託。現地スタッフによるきめ細やかな管理で、安定した稼働率と収益を維持します。</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">05</div>
+        <h3>マーケット情報の提供</h3>
+        <p>ニューヨーク不動産市場の最新動向・経済指標・エリア分析をタイムリーにお届け。長期的な視点での投資判断をサポートします。</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">06</div>
+        <h3>エグジット戦略の立案</h3>
+        <p>5年以上を視野に入れた長期運用から最適なタイミングでの売却まで、投資ライフサイクル全体を通じた戦略的アドバイスを提供します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── APPROACH ─── -->
+<section id="approach">
+  <div class="container">
+    <div class="approach-layout">
+      <div>
+        <p class="section-eyebrow reveal">Investment Approach</p>
+        <h2 class="section-title reveal">投資戦略・<br>フィロソフィー</h2>
+        <div class="section-divider reveal"></div>
+        <div class="approach-steps">
+          <div class="step reveal">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h4>長期視点による本質価値の見極め</h4>
+              <p>5年以上の長期スパンで稼働率・収益率の推移を洞察。短期的な市場変動に惑わされず、物件が持つ本質的な価値に基づいた投資判断を行います。</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h4>専門家チームによるリスク管理</h4>
+              <p>弁護士・エンジニア・会計士・不動産エージェントなど各分野の専門家が連携し、法的・技術的・財務的リスクを多層的に管理します。</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h4>利益相反のないパートナーシップ</h4>
+              <p>当社自身もアセット・パートナーとして自己資金を投資。投資家と完全に利害が一致した立場でアドバイスを提供します。</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <h4>安定キャッシュフローの重視</h4>
+              <p>売却益への依存を避け、物件からの安定した賃料収益を重視。インフレヘッジとしての実物資産の特性を最大限に活かします。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="approach-right reveal">
+        <div class="quote-block">
+          <blockquote>
+            「短期的な値上がりを追うのではなく、物件が生み出す真の収益力を見極める。それが私たちの不動産投資における一貫した哲学です。」
+          </blockquote>
+          <div class="quote-cite">
+            <strong>マーベリックプロパティー</strong>
+            投資フィロソフィーより
+          </div>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80"
+          alt="ニューヨーク摩天楼"
+          class="approach-img"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROPERTY ─── -->
+<section id="property">
+  <div class="container">
+    <p class="section-eyebrow reveal">Featured Investment</p>
+    <h2 class="section-title reveal">最新投資案件</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="property-card reveal">
+      <img
+        src="_assets/imgs/nicholas_big.jpg"
+        alt="327 St. Nicholas Avenue"
+        class="property-img"
+      >
+      <div class="property-info">
+        <span class="property-tag">NEW LISTING</span>
+        <h3 class="property-name">327 St. Nicholas Avenue</h3>
+        <p class="property-addr">Between 126th & 127th Street, Manhattan, New York, NY 10027</p>
+        <p class="property-desc">
+          ハーレム地区に位置するマンハッタンの収益物件。近年の再開発により急速に注目が高まるエリアで、安定した賃料収入と長期的な資産価値向上が期待できる案件です。詳細資料（PDF）をご用意しています。
+        </p>
+        <a href="#contact" class="property-cta">資料請求・お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIAL ─── -->
+<section id="testimonial">
+  <div class="container">
+    <div class="testimonial-inner">
+      <p class="section-eyebrow reveal" style="justify-content:center">Recommendation</p>
+      <div class="testimonial-quote reveal">
+        マーベリックプロパティーの投資アプローチは、科学的な分析思考と豊富な現地経験に裏打ちされています。長期的視点と誠実なパートナーシップ精神は、信頼に値する投資顧問の証左です。
+      </div>
+      <div class="testimonial-author reveal">
+        <span class="name">辻 守哉</span>
+        <span class="title">ロックフェラー大学 教授 / 免疫学研究者<br>メルク・キリンビール コンサルタント</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TEAM ─── -->
+<section id="team">
+  <div class="container">
+    <div class="team-desc">
+      <p class="section-eyebrow reveal">Our Team</p>
+      <h2 class="section-title reveal">専門家チーム体制</h2>
+      <div class="section-divider reveal"></div>
+      <p class="reveal">
+        各案件は、不動産・法律・財務・技術の各分野における専門家が連携することで、多角的なリスク管理を実現しています。
+      </p>
+    </div>
+    <div class="team-grid">
+      <div class="team-item reveal">
+        <div class="team-icon">⚖️</div>
+        <h4>弁護士</h4>
+        <p>契約書審査、権利関係の確認、法的リスクの検証</p>
+      </div>
+      <div class="team-item reveal reveal-delay-1">
+        <div class="team-icon">🏗</div>
+        <h4>エンジニア</h4>
+        <p>建物の物理的状態調査、修繕費用の見積もり</p>
+      </div>
+      <div class="team-item reveal reveal-delay-2">
+        <div class="team-icon">📋</div>
+        <h4>会計士</h4>
+        <p>財務デューデリジェンス、税務最適化の提案</p>
+      </div>
+      <div class="team-item reveal reveal-delay-3">
+        <div class="team-icon">🏙</div>
+        <h4>不動産エージェント</h4>
+        <p>現地市場の調査、物件評価、交渉サポート</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-eyebrow reveal">Contact</p>
+        <h2 class="section-title reveal">お問い合わせ</h2>
+        <div class="section-divider reveal"></div>
+        <p class="reveal">
+          ニューヨーク不動産投資への参加をご検討の方、資料請求のご要望、その他ご質問はお気軽にご連絡ください。専任スタッフが丁寧にご対応いたします。
+        </p>
+        <div class="contact-detail reveal">
+          <div class="contact-row">
+            <span class="contact-label">会社名</span>
+            <span class="contact-val">Maverick Properties, Inc.</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">所在地</span>
+            <span class="contact-val">New York, NY USA</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-label">WEB</span>
+            <span class="contact-val"><a href="https://ny-maverick.com">ny-maverick.com</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-grid">
+            <div class="form-row">
+              <label>お名前 *</label>
+              <input type="text" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-row">
+              <label>メールアドレス *</label>
+              <input type="email" placeholder="taro@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>お問い合わせ種別</label>
+            <select>
+              <option value="">選択してください</option>
+              <option>投資案件への参加について</option>
+              <option>資料請求</option>
+              <option>会社案内・サービス説明</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>メッセージ *</label>
+            <textarea placeholder="ご質問・ご要望をお書きください" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">MAVERICK PROPERTIES</div>
+        <p class="footer-tagline">
+          ローリスク＆リアルリターンを実現する<br>ニューヨーク発の不動産共同投資ビジネス。<br>東京12年・NY22年の実績。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">会社案内</a></li>
+          <li><a href="#team">専門家チーム</a></li>
+          <li><a href="#testimonial">推薦者</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">サービス一覧</a></li>
+          <li><a href="#approach">投資戦略</a></li>
+          <li><a href="#property">投資案件</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Info</h5>
+        <ul>
+          <li><a href="#contact">連絡先</a></li>
+          <li><a href="#">Q&amp;A</a></li>
+          <li><a href="#">マーケット情報</a></li>
+          <li><a href="#">実績集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2009–2026 Maverick Properties, Inc. All rights reserved.</p>
+      <p class="footer-copy">New York, NY USA</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Sticky nav background
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 60
+        ? 'rgba(10,22,40,0.98)'
+        : 'rgba(10,22,40,0.92)';
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.classList.toggle('is-open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('is-open');
+    });
+  });
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '送信しました ✓';
+    btn.style.background = '#4a7c59';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = '送信する →';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
