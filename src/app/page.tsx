@@ -252,7 +252,7 @@ export default function Home() {
           <div className="section-divider reveal" />
           <div className="property-card reveal">
             <img
-              src="/_assets/imgs/nicholas_big.jpg"
+              src="/imgs/nicholas_big.jpg"
               alt="327 St. Nicholas Avenue"
               className="property-img"
             />
