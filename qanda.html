@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&amp;A | マーベリックプロパティー</title>
+  <meta name="description" content="ニューヨーク不動産投資に関するよくあるご質問。投資のメリット、投資手法、LLCの仕組み、日米の税務の違いについて分かりやすく解説。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #0a1628;
+      --navy2: #0f2040;
+      --gold:  #c9a84c;
+      --gold2: #e8c96e;
+      --white: #f5f0e8;
+      --gray:  #8a9bb0;
+      --light: #d4cfc4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 70px;
+      background: rgba(10,22,40,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; letter-spacing: 0.12em; color: var(--gold); text-decoration: none; white-space: nowrap; }
+    .nav-logo span { display: block; font-size: 0.65rem; color: var(--gray); letter-spacing: 0.2em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--light); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { padding: 8px 22px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.72rem; letter-spacing: 0.1em; text-decoration: none; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--gold); color: var(--navy); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--gold); }
+    @media (max-width: 900px) {
+      .nav-links.is-open { display: flex !important; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: rgba(10,22,40,0.98); padding: 24px 48px 32px; border-bottom: 1px solid rgba(201,168,76,0.2); gap: 20px; z-index: 99; }
+    }
+
+    /* ─── HERO ─── */
+    .page-hero { position: relative; padding: 160px 0 100px; overflow: hidden; }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,22,40,0.97) 0%, rgba(10,22,40,0.85) 100%),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1800&q=80') center/cover no-repeat;
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .page-eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
+    .page-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 300; line-height: 1.15; margin-bottom: 24px; }
+    .page-desc { font-size: 0.95rem; color: var(--light); max-width: 640px; line-height: 2; }
+
+    /* ─── CONTAINER ─── */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
+
+    /* ─── FAQ SECTION ─── */
+    #faq { padding: 100px 0 120px; }
+
+    .faq-intro {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+    }
+    .faq-intro-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      padding-top: 6px;
+      border-top: 1px solid var(--gold);
+      align-self: start;
+      width: fit-content;
+    }
+    .faq-intro p {
+      font-size: 0.88rem;
+      color: var(--light);
+      line-height: 2;
+    }
+
+    .faq-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .faq-item {
+      background: var(--navy2);
+      border: 1px solid rgba(201,168,76,0.18);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .faq-item[open] {
+      border-color: rgba(201,168,76,0.4);
+      background: rgba(15,32,64,0.85);
+    }
+
+    .faq-q {
+      list-style: none;
+      cursor: pointer;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+      transition: background 0.2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q:hover { background: rgba(201,168,76,0.04); }
+
+    .faq-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 0.05em;
+      min-width: 56px;
+    }
+    .faq-num::before {
+      content: 'Q.';
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      margin-right: 4px;
+      vertical-align: 0.4em;
+    }
+
+    .faq-q-text {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+    }
+
+    .faq-toggle {
+      width: 28px; height: 28px;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .faq-toggle::before,
+    .faq-toggle::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 10px; height: 1px;
+      background: var(--gold);
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s;
+    }
+    .faq-toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .faq-item[open] .faq-toggle { border-color: var(--gold); transform: rotate(180deg); }
+    .faq-item[open] .faq-toggle::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+    .faq-a {
+      padding: 0 32px 32px 110px;
+      border-top: 1px solid rgba(201,168,76,0.12);
+      margin-top: 0;
+      padding-top: 24px;
+      animation: faq-fade 0.4s ease;
+    }
+    @keyframes faq-fade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .faq-a p {
+      font-size: 0.88rem;
+      color: var(--light);
+      line-height: 2;
+    }
+    .faq-a p + p { margin-top: 14px; }
+    .faq-a .lead { color: var(--white); font-size: 0.95rem; margin-bottom: 16px; }
+    .faq-a strong { color: var(--gold2); font-weight: 500; }
+
+    .faq-a ul {
+      list-style: none;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-a ul li {
+      font-size: 0.85rem;
+      color: var(--light);
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.9;
+    }
+    .faq-a ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.85em;
+      width: 12px; height: 1px;
+      background: var(--gold);
+    }
+    .faq-a ul li.diamond::before {
+      content: '◆';
+      width: auto; height: auto; background: none;
+      color: var(--gold);
+      font-size: 0.55rem;
+      top: 0.55em;
+    }
+
+    .faq-callout {
+      margin-top: 18px;
+      padding: 16px 20px;
+      background: rgba(201,168,76,0.08);
+      border-left: 3px solid var(--gold);
+      font-size: 0.85rem;
+      color: var(--white);
+    }
+    .faq-callout .label {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-right: 10px;
+      text-transform: uppercase;
+    }
+
+    .faq-table {
+      margin: 18px 0 6px;
+      border: 1px solid rgba(201,168,76,0.18);
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .faq-table th, .faq-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      vertical-align: top;
+    }
+    .faq-table th {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      font-weight: 500;
+      text-transform: uppercase;
+      background: rgba(201,168,76,0.05);
+    }
+    .faq-table td:first-child { color: var(--gray); width: 28%; }
+    .faq-table tr:last-child td { border-bottom: none; }
+    .faq-table .v-jp { color: var(--light); }
+    .faq-table .v-us { color: var(--white); }
+
+    /* ─── CTA ─── */
+    .cta-bar {
+      margin-top: 80px;
+      padding: 56px 48px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(15,32,64,0.5));
+      border: 1px solid rgba(201,168,76,0.25);
+      text-align: center;
+    }
+    .cta-bar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .cta-bar p { font-size: 0.85rem; color: var(--gray); margin-bottom: 28px; }
+    .cta-bar a {
+      display: inline-block;
+      padding: 14px 38px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta-bar a:hover { background: var(--gold); color: var(--navy); }
+
+    /* ─── FOOTER ─── */
+    footer { background: #060e1a; padding: 60px 0 30px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 16px; }
+    .footer-tagline { font-size: 0.75rem; color: var(--gray); line-height: 1.9; max-width: 260px; }
+    .footer-col h5 { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 20px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-size: 0.78rem; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(201,168,76,0.15); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.72rem; color: var(--gray); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .page-hero { padding: 120px 0 72px; }
+      .page-hero-content, .container { padding: 0 24px; }
+      #faq { padding: 64px 0 96px; }
+      .faq-intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 36px; margin-bottom: 48px; }
+      .faq-q { padding: 20px 22px; gap: 16px; }
+      .faq-num { font-size: 1.3rem; min-width: 44px; }
+      .faq-q-text { font-size: 0.92rem; }
+      .faq-a { padding: 18px 22px 24px; }
+      .cta-bar { padding: 40px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .faq-table th, .faq-table td { padding: 10px 12px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    MAVERICK PROPERTIES
+    <span>NEW YORK REAL ESTATE ADVISOR</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">会社案内</a></li>
+    <li><a href="index.html#services">サービス</a></li>
+    <li><a href="index.html#approach">投資戦略</a></li>
+    <li><a href="index.html#property">投資案件</a></li>
+    <li><a href="index.html#team">体制</a></li>
+    <li><a href="index.html#contact">連絡先</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">お問い合わせ</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <p class="page-eyebrow">Q &amp; A</p>
+    <h1 class="page-title">よくあるご質問</h1>
+    <p class="page-desc">ニューヨーク不動産投資に関して、お客様から多く寄せられるご質問とその回答をまとめました。投資のメリット、投資手法、LLCの仕組み、日米の税務の違いまで、検討に役立つ要点を整理しています。</p>
+  </div>
+</div>
+
+<section id="faq">
+  <div class="container">
+
+    <div class="faq-intro reveal">
+      <span class="faq-intro-label">Frequently Asked</span>
+      <p>米国の不動産投資は、減価償却や定期借家制度、LLC（有限責任会社）など、日本とは異なる制度の上に成り立っています。ここでは投資判断に直結する基本的な4つの論点を整理しました。個別案件のご相談は <a href="index.html#contact" style="color: var(--gold); text-decoration: underline;">お問い合わせ</a> よりお気軽にご連絡ください。</p>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item reveal" open>
+        <summary class="faq-q">
+          <span class="faq-num">1</span>
+          <span class="faq-q-text">米国への不動産投資にはどんなメリットがありますか？</span>
+          <span class="faq-toggle"></span>
+        </summary>
+        <div class="faq-a">
+          <p class="lead">キーワードは <strong>有利な利回り</strong> と <strong>ドル資産の保有</strong> です。</p>
+          <p>近年日本でも採用されだした <strong>収益還元法</strong>（その不動産がどれだけの収益を生むかで価値を決める考え方）により、築年数を重ねた建物も、立地・建物管理・テナント次第で日本と比較にならない価値を生みます。</p>
+          <p>加えて米国では <strong>契約定期借家</strong> が制度的に確立しており、商業用不動産の場合は <strong>5年・10年・15年の長期契約</strong> が一般的で、長期にわたり収入が安定します。</p>
+          <div class="faq-callout">
+            <span class="label">Tax Benefit</span>マンハッタンの中心部で <strong>建物比率70%以上</strong> の物件は減価償却が大きく見込め、税務メリットがさらに高まります。
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary class="faq-q">
+          <span class="faq-num">2</span>
+          <span class="faq-q-text">米国不動産への投資手法にはどのような方法がありますか？</span>
+          <span class="faq-toggle"></span>
+        </summary>
+        <div class="faq-a">
+          <p class="lead">大きく分けて <strong>直接投資</strong> と <strong>間接投資</strong> の2形態があります。</p>
+          <ul>
+            <li><strong>直接投資</strong>：日本の投資家が直接購入する形態。海外投資による税務効果が日本の投資家に直接影響します。</li>
+            <li><strong>間接投資</strong>：現地に法人を設立し、その法人が不動産投資を行う手法。所得には米国の税率が適用されるため、日本の税率との比較が判断ポイントになります。</li>
+          </ul>
+          <div class="faq-callout">
+            <span class="label">New Style</span>近年注目されているのが <strong>LLC（有限責任会社）による間接投資</strong> です。詳しくは Q3 をご覧ください。
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary class="faq-q">
+          <span class="faq-num">3</span>
+          <span class="faq-q-text">LLC（有限責任会社）とはどのようなものですか？</span>
+          <span class="faq-toggle"></span>
+        </summary>
+        <div class="faq-a">
+          <p class="lead">90年代に制定された、米国独特の <strong>新しい事業会社形態</strong> です。</p>
+          <p>LLC = <em>Limited Liability Company</em>、直訳すると「有限責任会社」。世界の経営者・企業家・投資家が注目するハイブリッドな会社形態で、主な特徴は次の2点です。</p>
+          <ul>
+            <li class="diamond">株式会社と同様に、事業に対する <strong>出資者の責任は有限</strong> である。</li>
+            <li class="diamond">株式会社の形態をとりながら匿名出資の構造をとることで、<strong>LLC自体には法人課税されない</strong>（英語表現で <em>Pass Through</em>）。</li>
+          </ul>
+          <p>マンハッタンでは現在、不動産を個人や株式会社名義で所有するよりも、所有者に対するリスクを物件レベルで遮断できる <strong>LLCを通じた所有形態が一般的</strong> となっています。</p>
+        </div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary class="faq-q">
+          <span class="faq-num">4</span>
+          <span class="faq-q-text">日米の税務の違いを教えて下さい。</span>
+          <span class="faq-toggle"></span>
+        </summary>
+        <div class="faq-a">
+          <p class="lead">主な違いは <strong>減価償却・最高税率・相続税評価</strong> の3点です。</p>
+
+          <p><strong>◆ 減価償却の考え方</strong></p>
+          <table class="faq-table" aria-label="日米の減価償却の比較">
+            <thead>
+              <tr><th>項目</th><th>日本</th><th>米国</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>耐用年数（SRC建物）</td>
+                <td class="v-jp">50年・定額法（法人は定率法も可）</td>
+                <td class="v-us">商業用39年／居住用27.5年・定額法</td>
+              </tr>
+              <tr>
+                <td>中古建物の扱い</td>
+                <td class="v-jp">購入時点の残存期間を適用<br>（50年超は新築耐用年数の20％）</td>
+                <td class="v-us">所有者が変わるごとに、購入時点から<br>新築の耐用年数が再適用される</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 18px;"><strong>◆ 最高税率の比較</strong></p>
+          <table class="faq-table" aria-label="日米の最高税率の比較">
+            <tbody>
+              <tr><td>日本（個人所得税）</td><td class="v-jp">最高税率 <strong>42%</strong></td></tr>
+              <tr><td>米国（連邦税）</td><td class="v-us">最高税率 <strong>39.6%</strong></td></tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 18px;"><strong>◆ 相続税の評価方法</strong></p>
+          <ul>
+            <li><strong>日本</strong>：「路線価」をベースに評価額を算出。</li>
+            <li><strong>米国</strong>：相続時点の <strong>適正時価</strong>（不動産鑑定士の評価）に基づく。一般的に実勢価格の <strong>約70～80%に圧縮</strong> される可能性が大きい。</li>
+          </ul>
+
+          <div class="faq-callout">
+            <span class="label">Note</span>税率や制度の詳細は法改正により変動します。実際の投資判断にあたっては、最新の税制に基づき税理士・専門家にご確認ください。
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="cta-bar reveal">
+      <h3>その他のご質問はお気軽に</h3>
+      <p>個別案件・税務スキームに関するご相談を承っております。</p>
+      <a href="index.html#contact">Contact Us</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="max-width: 1200px;">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">MAVERICK PROPERTIES</div>
+        <p class="footer-tagline">ローリスク＆リアルリターンを実現する<br>ニューヨーク発の不動産共同投資ビジネス。<br>東京12年・NY22年の実績。</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">会社案内</a></li>
+          <li><a href="index.html#team">専門家チーム</a></li>
+          <li><a href="index.html#testimonial">推薦者</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="index.html#services">サービス一覧</a></li>
+          <li><a href="index.html#approach">投資戦略</a></li>
+          <li><a href="index.html#property">投資案件</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Info</h5>
+        <ul>
+          <li><a href="index.html#contact">連絡先</a></li>
+          <li><a href="qanda.html">Q&amp;A</a></li>
+          <li><a href="#">マーケット情報</a></li>
+          <li><a href="achivement.html">実績集</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2009–2026 Maverick Properties, Inc. All rights reserved.</p>
+      <p class="footer-copy">New York, NY USA</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal')
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+    { threshold: 0.08 }
+  )
+  reveals.forEach(el => observer.observe(el))
+
+  function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('is-open')
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('is-open'))
+  })
+</script>
+</body>
+</html>
