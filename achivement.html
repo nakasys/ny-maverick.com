@@ -174,13 +174,14 @@
       display: grid;
       grid-template-columns: 220px 1fr;
       flex: 1;
-      min-height: 200px;
+      align-items: start;
     }
 
     .project-img-wrap {
       overflow: hidden;
       position: relative;
       background: var(--navy2);
+      aspect-ratio: 1 / 1;
     }
     .project-img-wrap img {
       width: 100%;
@@ -258,7 +259,7 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 700px) {
-      .project-card-body { grid-template-columns: 140px 1fr; min-height: 160px; }
+      .project-card-body { grid-template-columns: 140px 1fr; }
       .project-card-top { padding: 18px 20px 16px; }
       .project-card-top::before { left: 20px; }
       .project-name { font-size: 1.2rem; }
