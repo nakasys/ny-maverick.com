@@ -114,7 +114,6 @@
       font-weight: 300;
       line-height: 1.15;
       margin-bottom: 24px;
-      letter-spacing: 0.02em;
     }
 
     .page-desc { font-size: 0.95rem; color: var(--light); max-width: 560px; line-height: 2; }
@@ -132,20 +131,9 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
     }
-    .stat-item {
-      padding: 40px 0;
-      text-align: center;
-      border-right: 1px solid rgba(201,168,76,0.15);
-    }
+    .stat-item { padding: 40px 0; text-align: center; border-right: 1px solid rgba(201,168,76,0.15); }
     .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--gold2);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold2); line-height: 1; margin-bottom: 8px; }
     .stat-label { font-size: 0.72rem; color: var(--gray); letter-spacing: 0.1em; }
 
     /* ─── CONTAINER ─── */
@@ -175,47 +163,93 @@
       background: rgba(201,168,76,0.12);
     }
 
+    /* ─── PROJECT CARD ─── */
     .project-card {
       background: var(--navy);
-      padding: 40px 40px 36px;
       transition: background 0.3s;
-      position: relative;
       overflow: hidden;
-    }
-    .project-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
+      display: flex;
+      flex-direction: column;
     }
     .project-card:hover { background: var(--navy2); }
-    .project-card:hover::after { opacity: 1; }
 
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 20px;
+    /* image area */
+    .project-img-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+      transition: transform 0.7s ease;
+    }
+    .project-card:hover .project-img-wrap img { transform: scale(1.05); }
+
+    /* gradient at bottom of image */
+    .project-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,22,40,0.1) 0%,
+        transparent 40%,
+        rgba(10,22,40,0.75) 100%
+      );
+      pointer-events: none;
     }
 
-    .project-num {
+    /* project number overlaid on image */
+    .project-num-overlay {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      z-index: 1;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-size: 2.6rem;
       font-weight: 300;
-      color: rgba(201,168,76,0.2);
+      color: rgba(201,168,76,0.95);
       line-height: 1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
     }
 
-    .project-date {
-      font-size: 0.7rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      background: rgba(201,168,76,0.1);
+    /* date badge overlaid on image */
+    .project-date-overlay {
+      position: absolute;
+      bottom: 14px;
+      right: 16px;
+      z-index: 1;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--gold2);
+      background: rgba(10,22,40,0.75);
       padding: 4px 12px;
-      border: 1px solid rgba(201,168,76,0.25);
+      border: 1px solid rgba(201,168,76,0.35);
+      backdrop-filter: blur(4px);
+    }
+
+    /* content area */
+    .project-content {
+      padding: 28px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .tag-joint {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 2px 8px;
+      margin-bottom: 10px;
+      align-self: flex-start;
     }
 
     .project-name {
@@ -241,25 +275,14 @@
     .project-prices {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 16px;
       flex-wrap: wrap;
     }
-    .price-block { }
-    .price-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 2px; }
-    .price-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--white);
-    }
+    .price-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 3px; }
+    .price-val { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; color: var(--white); }
     .price-val.sold { color: var(--gold2); }
-
-    .price-arrow {
-      font-size: 1rem;
-      color: rgba(201,168,76,0.4);
-      margin-top: 14px;
-    }
+    .price-arrow { font-size: 1rem; color: rgba(201,168,76,0.4); margin-top: 14px; }
 
     .project-desc {
       font-size: 0.8rem;
@@ -267,32 +290,19 @@
       line-height: 1.8;
       padding-top: 16px;
       border-top: 1px solid rgba(201,168,76,0.1);
-    }
-
-    .tag-joint {
-      display: inline-block;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      color: var(--navy);
-      background: var(--gold);
-      padding: 2px 8px;
-      margin-bottom: 10px;
+      margin-top: auto;
     }
 
     /* ─── FOOTER ─── */
     footer { background: #060e1a; padding: 60px 0 30px; }
-
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 16px; }
     .footer-tagline { font-size: 0.75rem; color: var(--gray); line-height: 1.9; max-width: 260px; }
-
     .footer-col h5 { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 20px; text-transform: uppercase; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 10px; }
     .footer-col ul a { font-size: 0.78rem; color: var(--gray); text-decoration: none; transition: color 0.2s; }
     .footer-col ul a:hover { color: var(--white); }
-
     .footer-bottom { border-top: 1px solid rgba(201,168,76,0.15); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .footer-copy { font-size: 0.72rem; color: var(--gray); }
 
@@ -306,20 +316,16 @@
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .hamburger { display: flex; }
-
       .page-hero { padding: 120px 0 72px; }
       .page-hero-content, .container { padding: 0 24px; }
-
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .stat-item:nth-child(2) { border-right: none; }
       .stat-item { padding: 28px 0; }
-
       .projects-grid { grid-template-columns: 1fr; }
+      .project-img-wrap { height: 200px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 600px) {
-      .stats-inner { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
@@ -327,7 +333,6 @@
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     MAVERICK PROPERTIES
@@ -347,7 +352,6 @@
   </div>
 </nav>
 
-<!-- ─── HERO ─── -->
 <div class="page-hero">
   <div class="page-hero-bg"></div>
   <div class="page-hero-content">
@@ -357,7 +361,6 @@
   </div>
 </div>
 
-<!-- ─── STATS BAR ─── -->
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item reveal">
@@ -379,417 +382,354 @@
   </div>
 </div>
 
-<!-- ─── PROJECTS ─── -->
 <section id="projects">
   <div class="container">
     <div class="note-bar reveal">
       <div class="dot"></div>
-      <span>案件に付いた「米」マークはアメリカ人パートナーとの共同事業です。取得価格・売却価格は概算。賃料統制条例下の物件が大部分を占めます。</span>
+      <span>「米」マークはアメリカ人パートナーとの共同事業です。取得価格・売却価格は概算。賃料統制条例下の物件が大部分を占めます。</span>
     </div>
 
     <div class="projects-grid">
 
-      <!-- #19 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">19</div>
-          <div class="project-date">2015年7月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/19.jpg" alt="454 West 57th Street">
+          <div class="project-num-overlay">19</div>
+          <div class="project-date-overlay">2015年7月</div>
         </div>
-        <h3 class="project-name">454 West 57th Street Apartment</h3>
-        <p class="project-area">ミッドタウン・ウエスト</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$8,200,000</div>
+        <div class="project-content">
+          <h3 class="project-name">454 West 57th Street Apartment</h3>
+          <p class="project-area">ミッドタウン・ウエスト</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$8,200,000</div></div>
           </div>
+          <p class="project-desc">コロンバス・サークル駅徒歩7分。CBS放送局・リンカーン・センター近隣の好立地アパートメント。</p>
         </div>
-        <p class="project-desc">コロンバス・サークル駅徒歩7分。CBS放送局・リンカーン・センター近隣の好立地アパートメント。</p>
       </div>
 
-      <!-- #18 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">18</div>
-          <div class="project-date">2013年11月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/18.jpg" alt="622 West 136th Street">
+          <div class="project-num-overlay">18</div>
+          <div class="project-date-overlay">2013年11月</div>
         </div>
-        <h3 class="project-name">622 West 136th Street Apartment</h3>
-        <p class="project-area">ハーレム西端</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$2,845,000</div>
+        <div class="project-content">
+          <h3 class="project-name">622 West 136th Street Apartment</h3>
+          <p class="project-area">ハーレム西端</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$2,845,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$4,701,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$4,701,000</div>
-          </div>
+          <p class="project-desc">地下鉄駅徒歩1分。10戸、大学関係者・学生向け物件。安定した入居率を維持。</p>
         </div>
-        <p class="project-desc">地下鉄駅徒歩1分。10戸、大学関係者・学生向け物件。安定した入居率を維持。</p>
       </div>
 
-      <!-- #17 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">17</div>
-          <div class="project-date">2013年5月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/17.jpg" alt="618 West 136th Street">
+          <div class="project-num-overlay">17</div>
+          <div class="project-date-overlay">2013年5月</div>
         </div>
-        <h3 class="project-name">618 West 136th Street Apartment</h3>
-        <p class="project-area">ハーレム西端</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$4,543,000</div>
+        <div class="project-content">
+          <h3 class="project-name">618 West 136th Street Apartment</h3>
+          <p class="project-area">ハーレム西端</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$4,543,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$6,753,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$6,753,000</div>
-          </div>
+          <p class="project-desc">地下鉄駅徒歩1分。#18と同エリアの物件。安定賃料収入を見込んだ中長期運用案件。</p>
         </div>
-        <p class="project-desc">地下鉄駅徒歩1分。#18と同エリアの物件。安定賃料収入を見込んだ中長期運用案件。</p>
       </div>
 
-      <!-- #16 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">16</div>
-          <div class="project-date">2012年6月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/16.jpg" alt="1467 Amsterdam Avenue">
+          <div class="project-num-overlay">16</div>
+          <div class="project-date-overlay">2012年6月</div>
         </div>
-        <h3 class="project-name">1467 Amsterdam Avenue</h3>
-        <p class="project-area">ハーレム地区</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$3,554,000</div>
+        <div class="project-content">
+          <h3 class="project-name">1467 Amsterdam Avenue</h3>
+          <p class="project-area">ハーレム地区</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$3,554,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$5,000,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$5,000,000</div>
-          </div>
+          <p class="project-desc">プロジェクト#14の周辺エリア物件。同地区における継続的な投資展開の一環。</p>
         </div>
-        <p class="project-desc">プロジェクト#14の周辺エリア物件。同地区における継続的な投資展開の一環。</p>
       </div>
 
-      <!-- #15 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">15</div>
-          <div class="project-date">2011年9月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/15.jpg" alt="102 Convent Avenue">
+          <div class="project-num-overlay">15</div>
+          <div class="project-date-overlay">2011年9月</div>
         </div>
-        <h3 class="project-name">102 Convent Avenue</h3>
-        <p class="project-area">ハーレム西部</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$5,250,000</div>
+        <div class="project-content">
+          <h3 class="project-name">102 Convent Avenue</h3>
+          <p class="project-area">ハーレム西部</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$5,250,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$7,000,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$7,000,000</div>
-          </div>
+          <p class="project-desc">34戸。ニューヨーク市立大学隣接の立地で、学生・社会人テナントを安定確保。</p>
         </div>
-        <p class="project-desc">34戸。ニューヨーク市立大学隣接の立地で、学生・社会人テナントを安定確保。</p>
       </div>
 
-      <!-- #14 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">14</div>
-          <div class="project-date">2010年12月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/14.jpg" alt="1484 Amsterdam Avenue">
+          <div class="project-num-overlay">14</div>
+          <div class="project-date-overlay">2010年12月</div>
         </div>
-        <h3 class="project-name">1484 Amsterdam Avenue</h3>
-        <p class="project-area">ハーレム西地区</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$3,220,000</div>
+        <div class="project-content">
+          <h3 class="project-name">1484 Amsterdam Avenue</h3>
+          <p class="project-area">ハーレム西地区</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$3,220,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$5,900,900</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$5,900,900</div>
-          </div>
+          <p class="project-desc">28戸＋店舗2店。コロンビア大学第2キャンパス近隣の複合用途物件。</p>
         </div>
-        <p class="project-desc">28戸＋店舗2店。コロンビア大学第2キャンパス近隣の複合用途物件。</p>
       </div>
 
-      <!-- #13 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">13</div>
-          <div class="project-date">2009年7月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/13.jpg" alt="516-520 West 156th Street">
+          <div class="project-num-overlay">13</div>
+          <div class="project-date-overlay">2009年7月</div>
         </div>
-        <h3 class="project-name">516–520 West 156th Street</h3>
-        <p class="project-area">ワシントン・ハイツ</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$3,950,000</div>
+        <div class="project-content">
+          <h3 class="project-name">516–520 West 156th Street</h3>
+          <p class="project-area">ワシントン・ハイツ</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$3,950,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$4,850,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$4,850,000</div>
-          </div>
+          <p class="project-desc">連棟2棟44戸。ブロードウェー駅徒歩2分の好立地物件。</p>
         </div>
-        <p class="project-desc">連棟2棟44戸。ブロードウェー駅徒歩2分の好立地物件。</p>
       </div>
 
-      <!-- #12 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">12</div>
-          <div class="project-date">2009年7月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/12.jpg" alt="945 St. Nicholas Avenue">
+          <div class="project-num-overlay">12</div>
+          <div class="project-date-overlay">2009年7月</div>
         </div>
-        <h3 class="project-name">945 St. Nicholas Avenue</h3>
-        <p class="project-area">ワシントン・ハイツ</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$2,485,000</div>
+        <div class="project-content">
+          <h3 class="project-name">945 St. Nicholas Avenue</h3>
+          <p class="project-area">ワシントン・ハイツ</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$2,485,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$2,985,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$2,985,000</div>
-          </div>
+          <p class="project-desc">25戸。155丁目駅徒歩3分。#13と同時期取得の姉妹案件。</p>
         </div>
-        <p class="project-desc">25戸。155丁目駅徒歩3分。#13と同時期取得の姉妹案件。</p>
       </div>
 
-      <!-- #11 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">11</div>
-          <div class="project-date">2008年6月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/11.jpg" alt="P.S.157 Lofts">
+          <div class="project-num-overlay">11</div>
+          <div class="project-date-overlay">2008年6月</div>
         </div>
-        <span class="tag-joint">米 アメリカ人パートナーとの共同事業</span>
-        <h3 class="project-name">P.S.157 Lofts</h3>
-        <p class="project-area">ハーレム地区中心</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$17,500,000</div>
+        <div class="project-content">
+          <span class="tag-joint">米 アメリカ人パートナーとの共同事業</span>
+          <h3 class="project-name">P.S.157 Lofts</h3>
+          <p class="project-area">ハーレム地区中心</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$17,500,000</div></div>
           </div>
+          <p class="project-desc">73戸。元小学校建物をコンバージョンした大型ロフト案件。全米歴史的建造物保存指定を受けた希少物件。</p>
         </div>
-        <p class="project-desc">73戸。元小学校建物をコンバージョンした大型ロフト案件。全米歴史的建造物保存指定を受けた希少物件。</p>
       </div>
 
-      <!-- #10 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">10</div>
-          <div class="project-date">2007年3月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/10.jpg" alt="205 West 147th Street">
+          <div class="project-num-overlay">10</div>
+          <div class="project-date-overlay">2007年3月</div>
         </div>
-        <h3 class="project-name">205 West 147th Street</h3>
-        <p class="project-area">ハミルトン・ハイツ</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$2,700,000</div>
+        <div class="project-content">
+          <h3 class="project-name">205 West 147th Street</h3>
+          <p class="project-area">ハミルトン・ハイツ</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$2,700,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$3,150,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$3,150,000</div>
-          </div>
+          <p class="project-desc">16戸。ハーレム北部に位置する住宅用アパートメント物件。</p>
         </div>
-        <p class="project-desc">16戸。ハーレム北部に位置する住宅用アパートメント物件。</p>
       </div>
 
-      <!-- #9 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">9</div>
-          <div class="project-date">2006年6月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/09.jpg" alt="Washington Heights Apartment Holdings">
+          <div class="project-num-overlay">9</div>
+          <div class="project-date-overlay">2006年6月</div>
         </div>
-        <h3 class="project-name">Washington Heights Apartment Holdings</h3>
-        <p class="project-area">ワシントン・ハイツ 164丁目</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$2,460,000</div>
+        <div class="project-content">
+          <h3 class="project-name">Washington Heights Apartment Holdings</h3>
+          <p class="project-area">ワシントン・ハイツ 164丁目</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$2,460,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$2,640,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$2,640,000</div>
-          </div>
+          <p class="project-desc">20戸。ワシントン・ハイツ164丁目エリアのアパートメント保有案件。</p>
         </div>
-        <p class="project-desc">20戸。ワシントン・ハイツ164丁目エリアのアパートメント保有案件。</p>
       </div>
 
-      <!-- #8 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">8</div>
-          <div class="project-date">2005年12月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/08.jpg" alt="Hamilton Heights Apartment Holdings">
+          <div class="project-num-overlay">8</div>
+          <div class="project-date-overlay">2005年12月</div>
         </div>
-        <h3 class="project-name">Hamilton Heights Apartment Holdings</h3>
-        <p class="project-area">ハミルトン・ハイツ 146丁目</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$4,121,000</div>
+        <div class="project-content">
+          <h3 class="project-name">Hamilton Heights Apartment Holdings</h3>
+          <p class="project-area">ハミルトン・ハイツ 146丁目</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$4,121,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$5,087,500</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$5,087,500</div>
-          </div>
+          <p class="project-desc">2棟36戸。146丁目エリアの複数棟保有案件。</p>
         </div>
-        <p class="project-desc">2棟36戸。146丁目エリアの複数棟保有案件。</p>
       </div>
 
-      <!-- #7 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">7</div>
-          <div class="project-date">2005年8月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/07.jpg" alt="West 127th Street Associates">
+          <div class="project-num-overlay">7</div>
+          <div class="project-date-overlay">2005年8月</div>
         </div>
-        <h3 class="project-name">West 127th Street Associates</h3>
-        <p class="project-area">ハーレム地区</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$2,700,000</div>
+        <div class="project-content">
+          <h3 class="project-name">West 127th Street Associates</h3>
+          <p class="project-area">ハーレム地区</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$2,700,000</div></div>
           </div>
+          <p class="project-desc">20戸。金融機関による公開競売の落札物件。市場価格を下回る価格での取得に成功。</p>
         </div>
-        <p class="project-desc">20戸。金融機関による公開競売の落札物件。市場価格を下回る価格での取得に成功。</p>
       </div>
 
-      <!-- #6 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">6</div>
-          <div class="project-date">2005年7月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/06.jpg" alt="15 Wadsworth Associates">
+          <div class="project-num-overlay">6</div>
+          <div class="project-date-overlay">2005年7月</div>
         </div>
-        <h3 class="project-name">15 Wadsworth Associates</h3>
-        <p class="project-area">ワシントン・ハイツ 174丁目</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$2,950,000</div>
+        <div class="project-content">
+          <h3 class="project-name">15 Wadsworth Associates</h3>
+          <p class="project-area">ワシントン・ハイツ 174丁目</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$2,950,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$3,850,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$3,850,000</div>
-          </div>
+          <p class="project-desc">25戸＋医療事務所。174丁目の複合用途物件。医療テナントによる安定収入を確保。</p>
         </div>
-        <p class="project-desc">25戸＋医療事務所。174丁目の複合用途物件。医療テナントによる安定収入を確保。</p>
       </div>
 
-      <!-- #5 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">5</div>
-          <div class="project-date">2004年11月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/05.jpg" alt="528-530 9th Avenue">
+          <div class="project-num-overlay">5</div>
+          <div class="project-date-overlay">2004年11月</div>
         </div>
-        <span class="tag-joint">米 アメリカ人パートナーとの共同事業</span>
-        <h3 class="project-name">528–530 9th Avenue</h3>
-        <p class="project-area">タイムズ・スクエア</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$3,739,000</div>
+        <div class="project-content">
+          <span class="tag-joint">米 アメリカ人パートナーとの共同事業</span>
+          <h3 class="project-name">528–530 9th Avenue</h3>
+          <p class="project-area">タイムズ・スクエア</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$3,739,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$5,150,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$5,150,000</div>
-          </div>
+          <p class="project-desc">10戸＋店舗2店＋事務所1戸。粗利益率37%を達成。タイムズスクエア至近の複合物件。</p>
         </div>
-        <p class="project-desc">10戸＋店舗2店＋事務所1戸。粗利益率37%を達成。タイムズスクエア至近の複合物件。</p>
       </div>
 
-      <!-- #4 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">4</div>
-          <div class="project-date">2003年12月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/04.jpg" alt="Clearview Apartment Associates">
+          <div class="project-num-overlay">4</div>
+          <div class="project-date-overlay">2003年12月</div>
         </div>
-        <span class="tag-joint">米 アメリカ人パートナーとの共同事業</span>
-        <h3 class="project-name">Clearview Apartment Associates</h3>
-        <p class="project-area">クイーンズ</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$5,395,000</div>
+        <div class="project-content">
+          <span class="tag-joint">米 アメリカ人パートナーとの共同事業</span>
+          <h3 class="project-name">Clearview Apartment Associates</h3>
+          <p class="project-area">クイーンズ</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$5,395,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$7,700,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$7,700,000</div>
-          </div>
+          <p class="project-desc">45戸＋店舗5店。粗利益率54%。事業用資産の買換えを活用した大型案件。</p>
         </div>
-        <p class="project-desc">45戸＋店舗5店。粗利益率54%。事業用資産の買換えを活用した大型案件。</p>
       </div>
 
-      <!-- #3 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">3</div>
-          <div class="project-date">2004年2月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/03.jpg" alt="Greenwich Apartments Associates">
+          <div class="project-num-overlay">3</div>
+          <div class="project-date-overlay">2004年2月</div>
         </div>
-        <h3 class="project-name">Greenwich Apartments Associates</h3>
-        <p class="project-area">コネチカット州グリニッジ</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$1,721,000</div>
+        <div class="project-content">
+          <h3 class="project-name">Greenwich Apartments Associates</h3>
+          <p class="project-area">コネチカット州グリニッジ</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$1,721,000</div></div>
+            <div class="price-arrow">→</div>
+            <div><div class="price-label">売却価格</div><div class="price-val sold">$2,010,000</div></div>
           </div>
-          <div class="price-arrow">→</div>
-          <div class="price-block">
-            <div class="price-label">売却価格</div>
-            <div class="price-val sold">$2,010,000</div>
-          </div>
+          <p class="project-desc">小規模アパート2棟。粗利益率25%。NY近郊コネチカット州での投資案件。</p>
         </div>
-        <p class="project-desc">小規模アパート2棟。粗利益率25%。NY近郊コネチカット州での投資案件。</p>
       </div>
 
-      <!-- #2 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">2</div>
-          <div class="project-date">2002年9月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/02.jpg" alt="9 East 45th Street">
+          <div class="project-num-overlay">2</div>
+          <div class="project-date-overlay">2002年9月</div>
         </div>
-        <h3 class="project-name">9 East 45th Street</h3>
-        <p class="project-area">グランド・セントラル周辺</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$4,375,000</div>
+        <div class="project-content">
+          <h3 class="project-name">9 East 45th Street</h3>
+          <p class="project-area">グランド・セントラル周辺</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$4,375,000</div></div>
           </div>
+          <p class="project-desc">9階建てソーシャルビル。グランド・セントラル駅周辺の一等地に位置するオフィス・住居複合物件。</p>
         </div>
-        <p class="project-desc">9階建てソーシャルビル。グランド・セントラル駅周辺の一等地に位置するオフィス・住居複合物件。</p>
       </div>
 
-      <!-- #1 -->
       <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-num">1</div>
-          <div class="project-date">2001年2月</div>
+        <div class="project-img-wrap">
+          <img src="imgs/achivements/01.jpg" alt="180 7th Avenue Associates">
+          <div class="project-num-overlay">1</div>
+          <div class="project-date-overlay">2001年2月</div>
         </div>
-        <h3 class="project-name">180 7th Avenue Associates</h3>
-        <p class="project-area">チェルシー地区</p>
-        <div class="project-prices">
-          <div class="price-block">
-            <div class="price-label">取得価格</div>
-            <div class="price-val">$1,700,000</div>
+        <div class="project-content">
+          <h3 class="project-name">180 7th Avenue Associates</h3>
+          <p class="project-area">チェルシー地区</p>
+          <div class="project-prices">
+            <div><div class="price-label">取得価格</div><div class="price-val">$1,700,000</div></div>
           </div>
+          <p class="project-desc">10戸＋店舗3店。西部マンハッタン・チェルシー地区での第1号案件。2001年の活動開始を飾る記念すべきプロジェクト。</p>
         </div>
-        <p class="project-desc">10戸＋店舗3店。西部マンハッタン・チェルシー地区での第1号案件。2001年の活動開始を飾る記念すべきプロジェクト。</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-grid">
